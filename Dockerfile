@@ -23,6 +23,9 @@ RUN bash /build-customdeps.bash
 RUN mkdir -p /opt/wowd
 COPY --from=0 /opt/wowd /opt/wowd
 
+RUN mkdir -p /opt/wowd/src/sql
+COPY sql/ /opt/wowd/src/sql/
+
 # Verify that our build was successful (no linkage issues)
 RUN /opt/wowd/bin/bnetserver -v
 RUN /opt/wowd/bin/worldserver -v
