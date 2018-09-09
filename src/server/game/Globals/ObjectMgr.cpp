@@ -1054,8 +1054,8 @@ void ObjectMgr::CheckCreatureTemplate(CreatureTemplate const* cInfo)
     // set to that value to the current expansion's max leveling level
     if (cInfo->HealthScalingExpansion == EXPANSION_LEVEL_CURRENT)
     {
-        const_cast<CreatureTemplate*>(cInfo)->minlevel = (MAX_LEVEL + cInfo->minlevel);
-        const_cast<CreatureTemplate*>(cInfo)->maxlevel = (MAX_LEVEL + cInfo->maxlevel);
+        const_cast<CreatureTemplate*>(cInfo)->minlevel = (sWorld->getIntConfig(CONFIG_MAX_PLAYER_LEVEL) + cInfo->minlevel);
+        const_cast<CreatureTemplate*>(cInfo)->maxlevel = (sWorld->getIntConfig(CONFIG_MAX_PLAYER_LEVEL) + cInfo->maxlevel);
         const_cast<CreatureTemplate*>(cInfo)->HealthScalingExpansion = sWorld->getIntConfig(CONFIG_EXPANSION);
     }
 
