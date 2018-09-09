@@ -1,93 +1,18 @@
-# ![logo](https://community.trinitycore.org/public/style_images/1_trinitycore.png) TrinityCore (master)
+# OpenWoWD
+OpenWoWD is a cloud-friendly, private server-focused fork of [TrinityCore](https://github.com/TrinityCore/TrinityCore). This fork focuses on building features that are specifically beneficial to the private server community. 
 
-[![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/TrinityCore/TrinityCore.svg)](https://isitmaintained.com/project/TrinityCore/TrinityCore "Average time to resolve an issue") [![Percentage of issues still open](https://isitmaintained.com/badge/open/TrinityCore/TrinityCore.svg)](https://isitmaintained.com/project/TrinityCore/TrinityCore "Percentage of issues still open")
+## Supported Versions
+* World of Warcraft: Legion (7.3.5)
+ 
+## Usage
+We do not support any other method of running OpenWoWD other than via Docker. This is by far the fastest method to actually run the software. You can get Docker from [here](https://www.docker.com/get-started), if you aren't already familiar with it.
 
---------------
-
-
-* [Build Status](#build-status)
-* [Introduction](#introduction)
-* [Requirements](#requirements)
-* [Install](#install)
-* [Reporting issues](#reporting-issues)
-* [Submitting fixes](#submitting-fixes)
-* [Copyright](#copyright)
-* [Authors &amp; Contributors](#authors--contributors)
-* [Links](#links)
-
-
-
-## Build Status
-
-master | 3.3.5
-:------------: | :------------:
-[![master Build Status](https://travis-ci.org/TrinityCore/TrinityCore.svg?branch=master)](https://travis-ci.org/TrinityCore/TrinityCore) | [![3.3.5 Build Status](https://travis-ci.org/TrinityCore/TrinityCore.svg?branch=3.3.5)](https://travis-ci.org/TrinityCore/TrinityCore)
-[![master Build status](https://ci.appveyor.com/api/projects/status/54d0u1fxe50ad80o/branch/master?svg=true)](https://ci.appveyor.com/project/DDuarte/trinitycore/branch/master) | [![Build status](https://ci.appveyor.com/api/projects/status/54d0u1fxe50ad80o/branch/3.3.5?svg=true)](https://ci.appveyor.com/project/DDuarte/trinitycore/branch/3.3.5)
-[![Coverity Scan Build Status](https://scan.coverity.com/projects/435/badge.svg)](https://scan.coverity.com/projects/435) | [![Coverity Scan Build Status](https://scan.coverity.com/projects/4656/badge.svg)](https://scan.coverity.com/projects/4656)
-
-## Introduction
-
-TrinityCore is a *MMORPG* Framework based mostly in C++.
-
-It is derived from *MaNGOS*, the *Massive Network Game Object Server*, and is
-based on the code of that project with extensive changes over time to optimize,
-improve and cleanup the codebase at the same time as improving the in-game
-mechanics and functionality.
-
-It is completely open source; community involvement is highly encouraged.
-
-If you wish to contribute ideas or code, please visit our site linked below or
-make pull requests to our [Github repository](https://github.com/TrinityCore/TrinityCore/pulls).
-
-For further information on the TrinityCore project, please visit our project
-website at [TrinityCore.org](https://www.trinitycore.org).
-
-## Requirements
-
-
-Software requirements are available in the [wiki](https://www.trinitycore.info/display/tc/Requirements) for
-Windows, Linux and macOS.
-
-
-## Install
-
-Detailed installation guides are available in the [wiki](https://www.trinitycore.info/display/tc/Installation+Guide) for
-Windows, Linux and macOS.
-
-
-## Reporting issues
-
-Issues can be reported via the [Github issue tracker](https://github.com/TrinityCore/TrinityCore/labels/Branch-master).
-
-Please take the time to review existing issues before submitting your own to
-prevent duplicates.
-
-In addition, thoroughly read through the [issue tracker guide](https://community.trinitycore.org/topic/37-the-trinitycore-issuetracker-and-you/) to ensure
-your report contains the required information. Incorrect or poorly formed
-reports are wasteful and are subject to deletion.
-
-
-## Submitting fixes
-
-C++ fixes are submitted as pull requests via Github. For more information on how to
-properly submit a pull request, read the [how-to: maintain a remote fork](https://community.trinitycore.org/topic/9002-howto-maintain-a-remote-fork-for-pull-requests-tortoisegit/).
-For SQL only fixes, open a ticket; if a bug report exists for the bug, post on an existing ticket.
-
+Additional documentation (including examples) will be included shortly. :-)
 
 ## Copyright
-
 License: GPL 2.0
 
-Read file [COPYING](COPYING).
+Read file [COPYING](https://github.com/AgesOfWarcraft/openwowd/blob/master/COPYING).
 
-
-## Authors &amp; Contributors
-
-Read file [THANKS](THANKS).
-
-
-## Links
-
-* [Website](https://www.trinitycore.org)
-* [Wiki](https://www.trinitycore.info)
-* [Forums](https://community.trinitycore.org)
+## Authors & Contributors
+Read file [THANKS](https://github.com/AgesOfWarcraft/openwowd/blob/master/THANKS).
