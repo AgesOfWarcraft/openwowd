@@ -218,7 +218,8 @@ class TC_GAME_API ThreatManager
 
         void modifyThreatPercent(Unit* victim, int32 percent);
 
-        float getThreat(Unit* victim, bool alsoSearchOfflineList = false);
+        float getThreat(Unit* victim, bool alsoSearchOfflineList);
+        float getThreat(Unit* victim) { return getThreat(victim, false); }
 
         bool isThreatListEmpty() const { return iThreatContainer.empty(); }
 
@@ -264,6 +265,7 @@ class TC_GAME_API ThreatManager
         // methods to access the lists from the outside to do some dirty manipulation (scriping and such)
         // I hope they are used as little as possible.
         ThreatContainer::StorageType const & getThreatList() const { return iThreatContainer.getThreatList(); }
+        size_t getThreatListSize() const { return iThreatContainer.getThreatList().size(); }
         ThreatContainer::StorageType const & getOfflineThreatList() const { return iThreatOfflineContainer.getThreatList(); }
         ThreatContainer& getOnlineContainer() { return iThreatContainer; }
         ThreatContainer& getOfflineContainer() { return iThreatOfflineContainer; }

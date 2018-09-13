@@ -642,6 +642,9 @@ class TC_GAME_API World
         /// Get the current Message of the Day
         std::vector<std::string> const& GetMotd() const;
 
+        void SetLuaScriptsPath(std::string path) { m_luaScriptsPath = path; }
+        std::string const& GetLuaScriptsPath() const { return m_luaScriptsPath; }
+
         /// Set the string for new characters (first login)
         void SetNewCharString(std::string const& str) { m_newCharString = str; }
         /// Get the string for new characters (first login)
@@ -867,6 +870,7 @@ class TC_GAME_API World
         bool m_allowMovement;
         std::vector<std::string> _motd;
         std::string m_dataPath;
+        std::string m_luaScriptsPath;
 
         // for max speed access
         static float m_MaxVisibleDistanceOnContinents;

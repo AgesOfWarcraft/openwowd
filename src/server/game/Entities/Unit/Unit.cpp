@@ -7911,6 +7911,22 @@ bool Unit::_IsValidAttackTarget(Unit const* target, SpellInfo const* bySpell, Wo
         return false;
 
     // CvC case - can attack each other only when one of them is hostile
+    if(const Creature* creature = ToCreature()) {
+        if(const Creature* creatureTarget = target->ToCreature()) {
+            if(GetReactionTo(target) <= REP_HOSTILE || target->GetReactionTo(this) <= REP_HOSTILE)
+                return true;
+
+            // Allow normally neutral creatures to fight if they are placed in combat via scripting.
+            if(creature->IsInCombatWith(creatureTarget) || creatureTarget->IsInCombatWith(creature)) {
+                if (GetReactionTo(target) <= REP_NEUTRAL || target->GetReactionTo(this) <= REP_NEUTRAL) {
+                    if (creature->GetAI()->CanAIAttack(creatureTarget) ||
+                        creatureTarget->GetAI()->CanAIAttack(creature))
+                        return true;
+                }
+            }
+        }
+    }
+
     if (!HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_PVP_ATTACKABLE) && !target->HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_PVP_ATTACKABLE))
         return GetReactionTo(target) <= REP_HOSTILE || target->GetReactionTo(this) <= REP_HOSTILE;
 

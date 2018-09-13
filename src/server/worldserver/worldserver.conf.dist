@@ -76,6 +76,14 @@ RealmID = 1
 DataDir = "."
 
 #
+#    LuaScriptsDir
+#        Description: Lua scripts directory setting.
+#        Important:   LuaScriptsDir needs to be quoted, as the string might contain space characters.
+#        Example:     "@prefix@/share/trinitycore"
+#        Default:     "./scripts"
+LuaScriptsDir = "./scripts"
+
+#
 #    LogsDir
 #        Description: Logs directory setting.
 #        Important:   LogsDir needs to be quoted, as the string might contain space characters.

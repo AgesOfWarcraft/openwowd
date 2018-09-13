@@ -521,7 +521,17 @@ void ObjectMgr::LoadCreatureTemplate(Field* fields)
     creatureTemplate.RegenHealth            = fields[75].GetBool();
     creatureTemplate.MechanicImmuneMask     = fields[76].GetUInt32();
     creatureTemplate.flags_extra            = fields[77].GetUInt32();
-    creatureTemplate.ScriptID               = GetScriptId(fields[78].GetString());
+
+    std::string scriptData = fields[78].GetString();
+    std::string scriptName = scriptData;
+    auto itr = scriptData.find("#");
+    if(itr != std::string::npos) {
+        scriptName = scriptData.substr(0, itr);
+        scriptData = scriptData.substr(itr+1);
+    }
+
+    creatureTemplate.ScriptID               = GetScriptId(scriptName);
+    creatureTemplate.ScriptData             = scriptData;
 }
 
 void ObjectMgr::LoadCreatureTemplateAddons()
@@ -1933,9 +1943,22 @@ void ObjectMgr::LoadCreatures()
         data.phaseId        = fields[24].GetUInt32();
         data.phaseGroup     = fields[25].GetUInt32();
         data.terrainSwapMap = fields[26].GetInt32();
-        data.ScriptId       = GetScriptId(fields[27].GetString());
+
+        std::string scriptData = fields[27].GetString();
+        std::string scriptName = scriptData;
+        auto itr = scriptData.find("#");
+        if(itr != std::string::npos) {
+            scriptName = scriptData.substr(0, itr);
+            scriptData = scriptData.substr(itr+1);
+        }
+
+        data.ScriptId       = GetScriptId(scriptName);
         if (!data.ScriptId)
             data.ScriptId = cInfo->ScriptID;
+
+        data.ScriptData = scriptData;
+        if(!data.ScriptData.length())
+            data.ScriptData = cInfo->ScriptData;
 
         MapEntry const* mapEntry = sMapStore.LookupEntry(data.mapid);
         if (!mapEntry)
@@ -9192,7 +9215,14 @@ void ObjectMgr::LoadScriptNames()
 
     do
     {
-        _scriptNamesStore.push_back((*result)[0].GetString());
+        std::string scriptData = (*result)[0].GetString();
+        std::string scriptName = scriptData;
+        auto itr = scriptData.find("#");
+        if(itr != std::string::npos) {
+            // A script with parameters, only save the script name.
+            scriptName = scriptData.substr(0, itr);
+        }
+        _scriptNamesStore.push_back(scriptName);
     }
     while (result->NextRow());
 
