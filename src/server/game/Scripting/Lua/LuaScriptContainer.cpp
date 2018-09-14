@@ -105,7 +105,7 @@ void LuaScriptContainer::RegisterCreatureAIScript(std::string name, sol::functio
 }
 
 sol::table LuaScriptContainer::CreateOrGetCreatureGossipScriptObject(Creature* creature) {
-    std::string scriptName = creature->GetCreatureTemplate()->ScriptData;
+    std::string scriptName = creature->GetScriptData();
     sol::function func = GetCreatureGossipScript(scriptName);
 
     if(!func.valid())
@@ -122,7 +122,7 @@ sol::table LuaScriptContainer::CreateOrGetCreatureGossipScriptObject(Creature* c
 }
 
 sol::table LuaScriptContainer::CreateOrGetCreatureAIScriptObject(Creature* creature) {
-    std::string scriptName = creature->GetCreatureTemplate()->ScriptData;
+    std::string scriptName = creature->GetScriptData();
     sol::function func = GetCreatureAIScript(scriptName);
 
     if(!func.valid())
