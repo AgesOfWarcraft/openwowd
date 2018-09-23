@@ -208,7 +208,7 @@ target_link_libraries(scripts
     trinity-core-interface
   PUBLIC
     game-interface
-    lua)
+    ${LUA_LIBRARIES})
 
 target_include_directories(scripts
   PUBLIC

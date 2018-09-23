@@ -58,7 +58,7 @@ target_link_libraries(game
     efsw
   PUBLIC
     game-interface
-    lua
+    ${LUA_LIBRARIES}
 )
 
 set_target_properties(game

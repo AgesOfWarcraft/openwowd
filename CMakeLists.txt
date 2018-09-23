@@ -65,7 +65,7 @@ include(AutoCollect)
 
 find_package(PCHSupport)
 find_package(MySQL)
-include(FindLua)
+find_package(Lua)
 
 if(NOT WITHOUT_GIT)
   find_package(Git)

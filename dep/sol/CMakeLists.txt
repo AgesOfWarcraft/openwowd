@@ -8,10 +8,4 @@
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-add_library(sol INTERFACE)
-
-target_include_directories(sol
-        INTERFACE
-        ${CMAKE_CURRENT_SOURCE_DIR})
-
 set(SOL_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR} CACHE STRING "Location of lua-sol dependency")
