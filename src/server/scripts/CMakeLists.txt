@@ -213,7 +213,8 @@ target_link_libraries(scripts
 target_include_directories(scripts
   PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
-    ${LUA_INCLUDE_DIR})
+    ${LUA_INCLUDE_DIR}
+    ${SOL_INCLUDE_DIR})
 
 set_target_properties(scripts
   PROPERTIES

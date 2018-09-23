@@ -49,6 +49,7 @@ target_include_directories(game
     ${CMAKE_CURRENT_BINARY_DIR}
   PUBLIC
     ${LUA_INCLUDE_DIR}
+    ${SOL_INCLUDE_DIR}
 )
 
 target_link_libraries(game
