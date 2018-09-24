@@ -415,11 +415,8 @@ class TC_GAME_API UnitScript : public ScriptObject
 
 class TC_GAME_API CreatureScript : public UnitScript, public UpdatableScript<Creature>
 {
-    protected:
-
-        CreatureScript(const char* name);
-
     public:
+        CreatureScript(const char* name);
 
         // Called when a dummy spell effect is triggered on the creature.
         virtual bool OnDummyEffect(Unit* /*caster*/, uint32 /*spellId*/, SpellEffIndex /*effIndex*/, Creature* /*target*/) { return false; }

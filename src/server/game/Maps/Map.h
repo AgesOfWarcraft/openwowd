@@ -29,6 +29,7 @@
 #include "MapRefManager.h"
 #include "DynamicTree.h"
 #include "ObjectGuid.h"
+#include "LuaScriptContainer.h"
 
 #include <bitset>
 #include <list>
@@ -433,6 +434,9 @@ class TC_GAME_API Map : public GridRefManager<NGridType>
         void ScriptsStart(std::map<uint32, std::multimap<uint32, ScriptInfo> > const& scripts, uint32 id, Object* source, Object* target);
         void ScriptCommandStart(ScriptInfo const& script, uint32 delay, Object* source, Object* target);
 
+        LuaScriptContainer* GetLuaContainer() { return m_luaContainer; }
+        void ReloadLuaScripts();
+
         // must called with AddToWorld
         template<class T>
         void AddToActive(T* obj);
@@ -696,6 +700,8 @@ class TC_GAME_API Map : public GridRefManager<NGridType>
 
         typedef std::multimap<time_t, ScriptAction> ScriptScheduleMap;
         ScriptScheduleMap m_scriptSchedule;
+
+        LuaScriptContainer* m_luaContainer;
 
         // Type specific code for add/remove to/from grid
         template<class T>

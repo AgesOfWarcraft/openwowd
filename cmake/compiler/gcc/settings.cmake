@@ -31,7 +31,8 @@ if( WITH_WARNINGS )
       -Winit-self
       -Winvalid-pch
       -Wfatal-errors
-      -Woverloaded-virtual)
+      -Woverloaded-virtual
+      -Wno-strict-aliasing)
 
   message(STATUS "GCC: All warnings enabled")
 endif()

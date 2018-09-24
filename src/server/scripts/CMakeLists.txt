@@ -207,11 +207,14 @@ target_link_libraries(scripts
   PRIVATE
     trinity-core-interface
   PUBLIC
-    game-interface)
+    game-interface
+    ${LUA_LIBRARIES})
 
 target_include_directories(scripts
   PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR})
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${LUA_INCLUDE_DIR}
+    ${SOL_INCLUDE_DIR})
 
 set_target_properties(scripts
   PROPERTIES

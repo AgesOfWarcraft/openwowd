@@ -396,3 +396,21 @@ void MapManager::FreeInstanceId(uint32 instanceId)
 
     _instanceIds[instanceId] = false;
 }
+
+void MapManager::ReloadLuaScripts() {
+    std::lock_guard<std::mutex> lock(_mapsLock);
+
+    for (MapMapType::iterator itr = i_maps.begin(); itr != i_maps.end(); ++itr)
+    {
+        Map* map = itr->second;
+
+        map->ReloadLuaScripts();
+
+        if (!map->Instanceable())
+            continue;
+
+        MapInstanced::InstancedMaps &maps = ((MapInstanced*)map)->GetInstancedMaps();
+        for (MapInstanced::InstancedMaps::iterator mitr = maps.begin(); mitr != maps.end(); ++mitr)
+            mitr->second->ReloadLuaScripts();
+    }
+}

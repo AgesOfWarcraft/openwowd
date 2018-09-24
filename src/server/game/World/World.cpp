@@ -1310,13 +1310,18 @@ void World::LoadConfigSettings(bool reload)
     if (dataPath.empty() || (dataPath.at(dataPath.length()-1) != '/' && dataPath.at(dataPath.length()-1) != '\\'))
         dataPath.push_back('/');
 
+    std::string luaPath = sConfigMgr->GetStringDefault("LuaScriptsDir", "./scripts");
+    if (luaPath.empty() || (luaPath.at(dataPath.length()-1) != '/' && luaPath.at(dataPath.length()-1) != '\\'))
+        luaPath.push_back('/');
+
 #if TRINITY_PLATFORM == TRINITY_PLATFORM_UNIX || TRINITY_PLATFORM == TRINITY_PLATFORM_APPLE
-    if (dataPath[0] == '~')
-    {
-        const char* home = getenv("HOME");
-        if (home)
-            dataPath.replace(0, 1, home);
-    }
+    const char* home = getenv("HOME");
+    if (dataPath[0] == '~' && home)
+        dataPath.replace(0, 1, home);
+
+    if (luaPath[0] == '~' && home)
+        luaPath.replace(0, 1, home);
+
 #endif
 
     if (reload)
@@ -1329,6 +1334,9 @@ void World::LoadConfigSettings(bool reload)
         m_dataPath = dataPath;
         TC_LOG_INFO("server.loading", "Using DataDir %s", m_dataPath.c_str());
     }
+
+    SetLuaScriptsPath(luaPath);
+    TC_LOG_INFO("server.loading", "Using Lua scripts path %s", m_dataPath.c_str());
 
     m_bool_configs[CONFIG_ENABLE_MMAPS] = sConfigMgr->GetBoolDefault("mmap.enablePathFinding", false);
     TC_LOG_INFO("server.loading", "WORLD: MMap data directory is: %smmaps", m_dataPath.c_str());

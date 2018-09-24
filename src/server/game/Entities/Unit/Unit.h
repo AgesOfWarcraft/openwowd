@@ -945,7 +945,7 @@ class TC_GAME_API Unit : public WorldObject
 
         virtual ~Unit();
 
-        UnitAI* GetAI() { return i_AI; }
+        UnitAI* GetAI() const { return i_AI; };
         void SetAI(UnitAI* newAI) { i_AI = newAI; }
 
         void RemoveFromWorld() override;
@@ -1208,7 +1208,8 @@ class TC_GAME_API Unit : public WorldObject
 
         bool IsInCombat()  const { return HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IN_COMBAT); }
         bool IsInCombatWith(Unit const* who) const;
-        void CombatStart(Unit* target, bool initialAggro = true);
+        void CombatStart(Unit* target, bool initialAggro);
+        void CombatStart(Unit* target) { CombatStart(target, true); }
         void SetInCombatState(bool PvP, Unit* enemy = NULL);
         void SetInCombatWith(Unit* enemy);
         void ClearInCombat();
@@ -1895,14 +1896,36 @@ class TC_GAME_API Unit : public WorldObject
         int32 GetHighestExclusiveSameEffectSpellGroupValue(AuraEffect const* aurEff, AuraType auraType, bool checkMiscValue = false, int32 miscValue = 0) const;
         bool IsHighestExclusiveAura(Aura const* aura, bool removeOtherAuraApplications = false);
 
+        /*
+         * Chat-related function helpers.
+         * Defaults are not allowed here since these are used in Lua and there are issues with Sol binding.
+         */
         virtual void Talk(std::string const& text, ChatMsg msgType, Language language, float textRange, WorldObject const* target);
-        virtual void Say(std::string const& text, Language language, WorldObject const* target = nullptr);
-        virtual void Yell(std::string const& text, Language language, WorldObject const* target = nullptr);
-        virtual void TextEmote(std::string const& text, WorldObject const* target = nullptr, bool isBossEmote = false);
-        virtual void Whisper(std::string const& text, Language language, Player* target, bool isBossWhisper = false);
+
+        virtual void Say(std::string const& text, Language language, WorldObject const* target);
+        virtual void Say(std::string const& text, Language language) { Say(text, language, nullptr); }
+        virtual void Say(std::string const& text) { Say(text, LANG_UNIVERSAL); }
+
+        virtual void Yell(std::string const& text, Language language, WorldObject const* target);
+        virtual void Yell(std::string const& text, Language language) { Yell(text, language, nullptr); }
+        virtual void Yell(std::string const& text) { Yell(text, LANG_UNIVERSAL); };
+
+        virtual void TextEmote(std::string const& text, WorldObject const* target, bool isBossEmote);
+        virtual void TextEmote(std::string const& text, WorldObject const* target) { TextEmote(text, target, false); }
+        virtual void TextEmote(std::string const& text) { TextEmote(text, nullptr); };
+
+        virtual void Whisper(std::string const& text, Language language, Player* target, bool isBossWhisper);
+        virtual void Whisper(std::string const& text, Language language, Player* target) { Whisper(text, language, target, false); };
+        virtual void Whisper(std::string const& text, Player* target) { Whisper(text, LANG_UNIVERSAL, target); };
+
         virtual void Talk(uint32 textId, ChatMsg msgType, float textRange, WorldObject const* target);
-        virtual void Say(uint32 textId, WorldObject const* target = nullptr);
-        virtual void Yell(uint32 textId, WorldObject const* target = nullptr);
+
+        virtual void Say(uint32 textId, WorldObject const* target);
+        virtual void Say(uint32 textId) { Say(textId, nullptr); };
+
+        virtual void Yell(uint32 textId, WorldObject const* target);
+        virtual void Yell(uint32 textId) { Yell(textId, nullptr); };
+
         virtual void TextEmote(uint32 textId, WorldObject const* target = nullptr, bool isBossEmote = false);
         virtual void Whisper(uint32 textId, Player* target, bool isBossWhisper = false);
 

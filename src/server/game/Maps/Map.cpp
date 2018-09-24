@@ -305,6 +305,8 @@ i_scriptLock(false), _defaultLight(DB2Manager::GetDefaultMapLight(id))
 
     MMAP::MMapFactory::createOrGetMMapManager()->loadMapInstance(sWorld->GetDataPath(), GetId(), i_InstanceId);
 
+    m_luaContainer = new LuaScriptContainer();
+
     sScriptMgr->OnCreateMap(this);
 }
 
@@ -981,6 +983,8 @@ void Map::RemoveFromMap(T *obj, bool remove)
     obj->RemoveFromGrid();
 
     obj->ResetMap();
+
+    m_luaContainer->UnloadScriptsFor(obj);
 
     if (remove)
     {
@@ -4391,4 +4395,11 @@ void Map::UpdateAreaDependentAuras()
                 player->UpdateAreaDependentAuras(player->GetAreaId());
                 player->UpdateZoneDependentAuras(player->GetZoneId());
             }
+}
+
+void Map::ReloadLuaScripts() {
+    // not deleting the old container here. this is a memory leak.
+    // we have no way to deregister scripts from creatures that already exist.
+    // this feature should only be used in dev.
+    m_luaContainer = new LuaScriptContainer();
 }

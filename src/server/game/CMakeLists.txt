@@ -46,14 +46,20 @@ add_library(game
 
 target_include_directories(game
   PRIVATE
-    ${CMAKE_CURRENT_BINARY_DIR})
+    ${CMAKE_CURRENT_BINARY_DIR}
+  PUBLIC
+    ${LUA_INCLUDE_DIR}
+    ${SOL_INCLUDE_DIR}
+)
 
 target_link_libraries(game
   PRIVATE
     trinity-core-interface
     efsw
   PUBLIC
-    game-interface)
+    game-interface
+    ${LUA_LIBRARIES}
+)
 
 set_target_properties(game
     PROPERTIES

@@ -31,6 +31,8 @@ if(SERVERS)
   add_subdirectory(rapidjson)
   add_subdirectory(efsw)
   add_subdirectory(protobuf)
+  add_subdirectory(lua)
+  add_subdirectory(sol)
 endif()
 
 if(TOOLS)
